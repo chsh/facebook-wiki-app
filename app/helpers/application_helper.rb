@@ -6,9 +6,11 @@ module ApplicationHelper
   def page
     @page ||= signed_request.page
   end
-  def canvas?
-    return false unless signed_request
-    !page?
+  def liked?
+    page? && @page.liked?
+  end
+  def admin?
+    page? && @page.admin?
   end
   def signed_request
     @signed_request

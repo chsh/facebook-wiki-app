@@ -10,4 +10,5 @@ Facebootstrap::Application.routes.draw do
 
   match 'canvas' => 'canvas#index', as: 'canvas'
   match 'canvas/tab' => 'canvas#tab', as: 'tab'
+
 end

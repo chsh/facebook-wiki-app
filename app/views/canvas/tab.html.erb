@@ -2,14 +2,10 @@
 <p>Find me in app/views/canvas/tab.html.erb</p>
 <h2>is page?</h2>
 <%= page? %>
-<h2>is canvas?</h2>
-<%= canvas? %>
 <h2>Liked?</h2>
-<% if page? %>
-    <%= page.liked? %>
-<% else %>
-    unknown
-<% end %>
+<%= liked? %>
+<h2>Admin?</h2>
+<%= admin? %>
 <h2>Parsed signed request</h2>
 <p>
   <%= simple_format signed_request.inspect %>
