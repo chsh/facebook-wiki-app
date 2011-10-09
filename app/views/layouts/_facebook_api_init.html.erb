@@ -1,7 +1,7 @@
 <div id="fb-root" style="display: none"></div>
 <script>
   window.fbAsyncInit = function() {
-    FB.init({appId: '<%= Facebook::Config.app_id %>', status: true, cookie: true,
+    FB.init({appId: '<%= @app.app_id %>', status: true, cookie: true,
              xfbml: true});
   };
   (function() {

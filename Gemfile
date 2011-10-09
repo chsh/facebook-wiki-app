@@ -21,6 +21,12 @@ end
 
 gem 'jquery-rails'
 
+## various ways of formatting.
+# textile
+gem 'RedCloth'
+# markdown
+gem 'rdiscount'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
