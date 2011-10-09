@@ -1,16 +1,12 @@
 module ApplicationHelper
-  def page?
-    return false unless signed_request
-    page ? true : false
-  end
-  def page
-    @page ||= signed_request.page
+  def page_info
+    signed_request.page
   end
   def liked?
-    page? && @page.liked?
+    page_info.liked?
   end
   def admin?
-    page? && @page.admin?
+    page_info.admin?
   end
   def signed_request
     @signed_request

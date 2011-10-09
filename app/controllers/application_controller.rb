@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :parse_signed_request
 
+  include ApplicationHelper
+
+  protected
   def page?
     return false unless signed_request
     page ? true : false
@@ -16,10 +19,10 @@ class ApplicationController < ActionController::Base
   private
   def parse_signed_request
     if request.post? && params[:signed_request]
-      @signed_request = Facebook.parse_signed_request params[:signed_request]
+      @signed_request = Facebook.parse_signed_request params[:signed_request], app_id: app_id
       session[:signed_request] = params[:signed_request]
     elsif request.get? && session[:signed_request]
-      @signed_request = Facebook.parse_signed_request session[:signed_request]
+      @signed_request = Facebook.parse_signed_request session[:signed_request], app_id: app_id
     end
     if @signed_request
       user_id = @signed_request[:user_id]
@@ -63,5 +66,8 @@ class ApplicationController < ActionController::Base
   end
   def save_user_id_to_session(user_id)
     session['facebook.user_id'] = user_id
+  end
+  def app_id
+    return $1 if request.host =~ /^([0-9A-Fa-f]+)\./
   end
 end
