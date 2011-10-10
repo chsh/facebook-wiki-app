@@ -1,14 +1,18 @@
 class PageAppsController < ApplicationController
+  before_filter :lookup_app
   def show
-    @app = page_app.app
-    render text: page_app.content.render(hint), layout: true
+    @content_page = page_app.content.default_page
+    render layout: true
   end
 
   private
   def page_app
-    @page ||= PageApp.find(params[:id])
+    @page_app ||= PageApp.find(params[:id])
   end
   def hint
     @hint ||= session["page_apps/#{page_app.id}"]
+  end
+  def lookup_app
+    @app = page_app.app
   end
 end

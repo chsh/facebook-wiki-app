@@ -14,7 +14,6 @@ class Page < ActiveRecord::Base
     instance
   end
 
-  private
   def enable_content
     self.content ||= Content.new
   end

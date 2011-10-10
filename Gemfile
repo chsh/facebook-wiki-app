@@ -20,6 +20,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'haml-rails'
 
 ## various ways of formatting.
 # textile

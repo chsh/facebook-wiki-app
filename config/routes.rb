@@ -7,8 +7,13 @@ Facebootstrap::Application.routes.draw do
   # /pages/[page_id]/tabs/[tab_name]/edit,updte, etc...
   # /page_apps/[page_app_id]/tabs/[tab_name]/edit,update, etc...
 
-  resources :pages
-  resources :page_apps
+  resources :content_pages
+  resources :pages do
+    resources :content_pages
+  end
+  resources :page_apps do
+    resources :content_pages
+  end
 
   devise_for :users, controllers: {
       omniauth_callbacks: "users/omniauth_callbacks",

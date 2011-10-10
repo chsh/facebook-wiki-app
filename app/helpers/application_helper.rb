@@ -1,12 +1,12 @@
 module ApplicationHelper
-  def page_info
+  def fb_page
     signed_request.page
   end
   def liked?
-    page_info.liked?
+    fb_page.liked?
   end
   def admin?
-    page_info.admin?
+    fb_page.admin?
   end
   def signed_request
     @signed_request

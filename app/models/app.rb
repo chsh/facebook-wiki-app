@@ -8,6 +8,10 @@ class App < ActiveRecord::Base
 
   before_save :fill_attrs_if_empty
 
+  def self.via(app_or_app_id)
+    return app_or_app_id if app_or_app_id.is_a?(App)
+    self.where(app_id: app_or_app_id).first
+  end
   def public_attrs
     self[:public_attrs] ||= {}
   end

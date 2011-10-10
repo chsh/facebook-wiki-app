@@ -3,6 +3,7 @@ class CreateApps < ActiveRecord::Migration
     create_table :apps do |t|
       t.string :app_id, null: false
       t.string :app_secret, null: false
+      t.boolean :meta, default: false
       t.text :private_attrs
       t.text :public_attrs
       t.timestamps
