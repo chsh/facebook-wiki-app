@@ -5,6 +5,14 @@ class PageApp < ActiveRecord::Base
 
   before_create :enable_content
 
+  # @param params [Object]
+  def self.using(params)
+    instance = self.where(params).first
+    unless instance
+      instance = self.create params
+    end
+    instance
+  end
   def self.from(params)
     page_id = page_id_from_params params
     app_id = app_id_from_params params
@@ -13,10 +21,10 @@ class PageApp < ActiveRecord::Base
           self.create(app_id: app_id, page_id: page_id)
     end
   end
-  private
   def enable_content
     self.content ||= Content.new
   end
+  private
   def self.app_id_from_params(params)
     return params[:app_id] if params[:app_id]
     return params[:app].id if params[:app]

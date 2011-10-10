@@ -1,0 +1,5 @@
+%h2= @content_page.name
+%p= raw with_wiki_links(@content_page.render(@hint))
+%hr
+%div
+  = link_to 'edit', edit_content_page_path(@content_page)

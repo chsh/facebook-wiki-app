@@ -1,18 +1,4 @@
 class Facebook
-  class Config
-    def self.app_id
-      @@app_id ||= ENV['FACEBOOK_APP_ID']
-    end
-    def self.app_secret
-      @@app_secret ||= ENV['FACEBOOK_APP_SECRET']
-    end
-    def self.app_scope
-      @@app_scope ||= ENV['FACEBOOK_APP_SCOPE']
-    end
-    def self.t8_app_secret
-      @@t8_app_secret ||= ENV['T8_APP_SECRET']
-    end
-  end
   class Profile
     class Hash < HashWithMethod
     end
@@ -44,15 +30,10 @@ class Facebook
     @@public_graph ||= Koala::Facebook::GraphAPI.new
   end
 
-  def self.parse_signed_request(signed_request, ops = {})
+  def self.parse_signed_request(signed_request, app)
     _, encoded_envelope = signed_request.split('.', 2)
-    envelope = MultiJson.decode(base64_url_decode(encoded_envelope))
-    if envelope['t8']
-      secret = Config.t8_app_secret
-    else
-      secret = Config.app_secret
-    end
-    oauth = Koala::Facebook::OAuth.new(Config.app_id, secret)
+    # envelope = MultiJson.decode(base64_url_decode(encoded_envelope))
+    oauth = Koala::Facebook::OAuth.new(app.app_id, app.app_secret)
     SignedRequest.from oauth.parse_signed_request(signed_request)
   end
   # base 64

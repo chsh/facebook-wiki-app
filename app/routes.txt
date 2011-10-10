@@ -1,0 +1,50 @@
+             content_pages GET    /content_pages(.:format)                                 {:action=>"index", :controller=>"content_pages"}
+                           POST   /content_pages(.:format)                                 {:action=>"create", :controller=>"content_pages"}
+          new_content_page GET    /content_pages/new(.:format)                             {:action=>"new", :controller=>"content_pages"}
+         edit_content_page GET    /content_pages/:id/edit(.:format)                        {:action=>"edit", :controller=>"content_pages"}
+              content_page GET    /content_pages/:id(.:format)                             {:action=>"show", :controller=>"content_pages"}
+                           PUT    /content_pages/:id(.:format)                             {:action=>"update", :controller=>"content_pages"}
+                           DELETE /content_pages/:id(.:format)                             {:action=>"destroy", :controller=>"content_pages"}
+        page_content_pages GET    /pages/:page_id/content_pages(.:format)                  {:action=>"index", :controller=>"content_pages"}
+                           POST   /pages/:page_id/content_pages(.:format)                  {:action=>"create", :controller=>"content_pages"}
+     new_page_content_page GET    /pages/:page_id/content_pages/new(.:format)              {:action=>"new", :controller=>"content_pages"}
+    edit_page_content_page GET    /pages/:page_id/content_pages/:id/edit(.:format)         {:action=>"edit", :controller=>"content_pages"}
+         page_content_page GET    /pages/:page_id/content_pages/:id(.:format)              {:action=>"show", :controller=>"content_pages"}
+                           PUT    /pages/:page_id/content_pages/:id(.:format)              {:action=>"update", :controller=>"content_pages"}
+                           DELETE /pages/:page_id/content_pages/:id(.:format)              {:action=>"destroy", :controller=>"content_pages"}
+                     pages GET    /pages(.:format)                                         {:action=>"index", :controller=>"pages"}
+                           POST   /pages(.:format)                                         {:action=>"create", :controller=>"pages"}
+                  new_page GET    /pages/new(.:format)                                     {:action=>"new", :controller=>"pages"}
+                 edit_page GET    /pages/:id/edit(.:format)                                {:action=>"edit", :controller=>"pages"}
+                      page GET    /pages/:id(.:format)                                     {:action=>"show", :controller=>"pages"}
+                           PUT    /pages/:id(.:format)                                     {:action=>"update", :controller=>"pages"}
+                           DELETE /pages/:id(.:format)                                     {:action=>"destroy", :controller=>"pages"}
+    page_app_content_pages GET    /page_apps/:page_app_id/content_pages(.:format)          {:action=>"index", :controller=>"content_pages"}
+                           POST   /page_apps/:page_app_id/content_pages(.:format)          {:action=>"create", :controller=>"content_pages"}
+ new_page_app_content_page GET    /page_apps/:page_app_id/content_pages/new(.:format)      {:action=>"new", :controller=>"content_pages"}
+edit_page_app_content_page GET    /page_apps/:page_app_id/content_pages/:id/edit(.:format) {:action=>"edit", :controller=>"content_pages"}
+     page_app_content_page GET    /page_apps/:page_app_id/content_pages/:id(.:format)      {:action=>"show", :controller=>"content_pages"}
+                           PUT    /page_apps/:page_app_id/content_pages/:id(.:format)      {:action=>"update", :controller=>"content_pages"}
+                           DELETE /page_apps/:page_app_id/content_pages/:id(.:format)      {:action=>"destroy", :controller=>"content_pages"}
+                 page_apps GET    /page_apps(.:format)                                     {:action=>"index", :controller=>"page_apps"}
+                           POST   /page_apps(.:format)                                     {:action=>"create", :controller=>"page_apps"}
+              new_page_app GET    /page_apps/new(.:format)                                 {:action=>"new", :controller=>"page_apps"}
+             edit_page_app GET    /page_apps/:id/edit(.:format)                            {:action=>"edit", :controller=>"page_apps"}
+                  page_app GET    /page_apps/:id(.:format)                                 {:action=>"show", :controller=>"page_apps"}
+                           PUT    /page_apps/:id(.:format)                                 {:action=>"update", :controller=>"page_apps"}
+                           DELETE /page_apps/:id(.:format)                                 {:action=>"destroy", :controller=>"page_apps"}
+          new_user_session GET    /users/sign_in(.:format)                                 {:action=>"new", :controller=>"users/sessions"}
+              user_session POST   /users/sign_in(.:format)                                 {:action=>"create", :controller=>"users/sessions"}
+      destroy_user_session DELETE /users/sign_out(.:format)                                {:action=>"destroy", :controller=>"users/sessions"}
+    user_omniauth_callback        /users/auth/:action/callback(.:format)                   {:action=>/facebook/, :controller=>"users/omniauth_callbacks"}
+                     users GET    /users(.:format)                                         {:action=>"index", :controller=>"users"}
+                           POST   /users(.:format)                                         {:action=>"create", :controller=>"users"}
+                  new_user GET    /users/new(.:format)                                     {:action=>"new", :controller=>"users"}
+                 edit_user GET    /users/:id/edit(.:format)                                {:action=>"edit", :controller=>"users"}
+                      user GET    /users/:id(.:format)                                     {:action=>"show", :controller=>"users"}
+                           PUT    /users/:id(.:format)                                     {:action=>"update", :controller=>"users"}
+                           DELETE /users/:id(.:format)                                     {:action=>"destroy", :controller=>"users"}
+               deauthorize        /management/deauthorize(.:format)                        {:controller=>"management", :action=>"deauthorize"}
+       register_auth_token        /management/register_auth_token(.:format)                {:controller=>"management", :action=>"register_auth_token"}
+                    canvas        /canvas(.:format)                                        {:action=>"index", :controller=>"canvas"}
+                       tab        /canvas/tab/:app_id(.:format)                            {:controller=>"canvas", :action=>"tab"}

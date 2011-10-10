@@ -1,0 +1,19 @@
+%h1 New Content Page
+
+= form_for [(@page || @page_app), @content_page] do |f|
+  -if @content_page.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@content_page.errors.count, "error")} prohibited this example from being saved:"
+      %ul
+        - @content_page.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    %label= @content_page.name
+    = f.hidden_field :name
+  .field
+    = f.label :text
+    = f.text_area :text
+  .actions
+    = f.submit 'Save'
+
+= link_to 'Back', :back
