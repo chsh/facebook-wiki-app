@@ -4,19 +4,17 @@ class Content < ActiveRecord::Base
 
   belongs_to :ownable, polymorphic: true
 
-  before_save :fill_content_default
+  before_create :fill_content_default
 
   def default_page
     self.pages.by_name self.content[:default_name]
   end
-
-  def content
-    self[:content] ||= {default_name: 'wiki'}
+  def default_name
+    self.content[:default_name]
   end
 
   private
   def fill_content_default
-    # call for initialization.
-    self.content
+    (self[:content] ||= {})[:default_name] ||= 'wiki'
   end
 end

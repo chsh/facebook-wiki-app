@@ -2,7 +2,12 @@ class PageAppsController < ApplicationController
   before_filter :lookup_app
   def show
     @content_page = page_app.content.default_page
-    render layout: true
+    if @content_page
+      render layout: true
+    else
+      redirect_to page_app_content_page_path(page_app_id: page_app.id,
+                                             id: page_app.content.default_name)
+    end
   end
 
   private

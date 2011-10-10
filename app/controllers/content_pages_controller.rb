@@ -46,7 +46,12 @@ class ContentPagesController < ApplicationController
   def create
     @content_page = content.pages.new(params[:content_page])
     if @content_page.save
-      redirect_to action: 'show', id: @content_page.name
+      owner = @content_page.content.ownable
+      if owner.is_a?(PageApp)
+        redirect_to page_app_content_page_path(page_app_id: owner.id, id: @content_page.name)
+      else # owner is Page
+        redirect_to page_content_page_path(page_id: owner.id, id: @content_page.name)
+      end
     else
       render action: 'new'
     end
