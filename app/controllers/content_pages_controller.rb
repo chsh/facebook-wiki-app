@@ -20,7 +20,7 @@ class ContentPagesController < ApplicationController
     if @content_page
       render layout: true
     else
-      @content_page = content.pages.new(name: params[:id])
+      @content_page = content.pages.new(name: params[:id].to_s.gsub('%2F', '/').gsub('%25', '%'))
       render action: 'new', layout: true
     end
   end
@@ -48,9 +48,9 @@ class ContentPagesController < ApplicationController
     if @content_page.save
       owner = @content_page.content.ownable
       if owner.is_a?(PageApp)
-        redirect_to page_app_content_page_path(page_app_id: owner.id, id: @content_page.name)
+        redirect_to page_app_content_page_path(page_app_id: owner.id, id: @content_page.name.gsub('%', '%25').gsub('/', '%2F'))
       else # owner is Page
-        redirect_to page_content_page_path(page_id: owner.id, id: @content_page.name)
+        redirect_to page_content_page_path(page_id: owner.id, id: @content_page.name.gsub('%', '%25').gsub('/', '%2F'))
       end
     else
       render action: 'new'
@@ -63,9 +63,9 @@ class ContentPagesController < ApplicationController
     if @content_page.update_attributes(params[:content_page])
       owner = @content_page.content.ownable
       if owner.is_a?(PageApp)
-        redirect_to page_app_content_page_path(page_app_id: owner.id, id: @content_page.name)
+        redirect_to page_app_content_page_path(page_app_id: owner.id, id: @content_page.name.gsub('%', '%25').gsub('/', '%2F'))
       else # owner is Page
-        redirect_to page_content_page_path(page_id: owner.id, id: @content_page.name)
+        redirect_to page_content_page_path(page_id: owner.id, id: @content_page.name.gsub('%', '%25').gsub('/', '%2F'))
       end
     else
       render action: 'edit'
